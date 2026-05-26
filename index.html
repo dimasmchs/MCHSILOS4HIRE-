@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Silos_Portfolio_v1.0.exe</title>
+    <style>
+        :root {
+            --win-grey: #c0c0c0;
+            --win-blue: #000080;
+            --win-teal: #008080;
+            --shadow: #808080;
+        }
+
+        body {
+            background-color: var(--win-teal);
+            margin: 0;
+            font-family: 'Tahoma', 'Segoe UI', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Desktop Icons */
+        #desktop {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(1, 100px);
+            grid-gap: 25px;
+        }
+
+        .icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 11px;
+            cursor: pointer;
+            text-align: center;
+            text-shadow: 1px 1px black;
+        }
+
+        .icon img { width: 40px; height: 40px; margin-bottom: 5px; image-rendering: pixelated; }
+
+        /* Window Styling */
+        .window {
+            position: absolute;
+            background-color: var(--win-grey);
+            border: 2px solid;
+            border-color: #fff var(--shadow) var(--shadow) #fff;
+            padding: 2px;
+            box-shadow: 1px 1px 0px black;
+            min-width: 300px;
+        }
+
+        .title-bar {
+            background: linear-gradient(90deg, var(--win-blue), #1084d0);
+            color: white;
+            padding: 3px 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: grab;
+        }
+
+        .title-bar:active { cursor: grabbing; }
+
+        .close-btn {
+            background: var(--win-grey);
+            border: 1px solid;
+            border-color: #fff #000 #000 #fff;
+            width: 16px;
+            height: 14px;
+            font-size: 9px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .window-body {
+            padding: 15px;
+            background: white;
+            margin: 2px;
+            border: 2px inset;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        /* Engineering Specific Styles */
+        h2 { font-size: 16px; margin-top: 0; color: #000; }
+        .tag { background: #e0e0e0; padding: 2px 5px; border: 1px solid #888; font-size: 11px; margin-right: 5px; }
+
+        /* Taskbar */
+        #taskbar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 30px;
+            background: var(--win-grey);
+            border-top: 2px solid white;
+            display: flex;
+            align-items: center;
+            padding-left: 2px;
+            z-index: 1000;
+        }
+
+        .start-btn {
+            font-weight: bold;
+            border: 2px solid;
+            border-color: #fff var(--shadow) var(--shadow) #fff;
+            padding: 2px 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--win-grey);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="desktop">
+    <div class="icon" onclick="openWin('aboutWin')">
+        <img src="https://win98icons.alexmeub.com/icons/png/user_world-0.png">
+        <span>About_Me.exe</span>
+    </div>
+    <div class="icon" onclick="openWin('projWin')">
+        <img src="https://win98icons.alexmeub.com/icons/png/directory_closed-4.png">
+        <span>My_Models</span>
+    </div>
+    <div class="icon" onclick="openWin('skillWin')">
+        <img src="https://win98icons.alexmeub.com/icons/png/gears-0.png">
+        <span>Software_Stack</span>
+    </div>
+</div>
+
+<div class="window" id="aboutWin" style="top: 50px; left: 150px;">
+    <div class="title-bar"><span>Bio.txt</span><button class="close-btn" onclick="closeWin('aboutWin')">X</button></div>
+    <div class="window-body">
+        <h2>Mark Christian Silos</h2>
+        <p><b>Position:</b> Civil Engineering Student / Intern</p>
+        <p><b>Education:</b> Philippine Christian University Dasmarinas</p>
+        <hr>
+        <p>Currently seeking apprenticeship opportunities to apply structural modeling and automated design skills in real-world projects.</p>
+    </div>
+</div>
+
+<div class="window" id="projWin" style="top: 100px; left: 200px; display:none;">
+    <div class="title-bar"><span>Project_Explorer</span><button class="close-btn" onclick="closeWin('projWin')">X</button></div>
+    <div class="window-body">
+        <h3>Recent Engineering Works:</h3>
+        <ul>
+            <li><b>Structural Modeling:</b> 3D Designs in Sketchup & Tinkercad.</li>
+            <li><b>Automation:</b> Automated Stirrup/Steel Reinforcement Excel Design.</li>
+            <li><b>Project Mgmt:</b> Spreadsheet Monitoring & Calendar setup.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="window" id="skillWin" style="top: 150px; left: 250px; display:none;">
+    <div class="title-bar"><span>Software_Stack.dll</span><button class="close-btn" onclick="closeWin('skillWin')">X</button></div>
+    <div class="window-body">
+        <p><b>Eng. Software:</b> <span class="tag">AutoCAD</span> <span class="tag">Sketchup</span> <span class="tag">STAAD</span> <span class="tag">EPANET</span></p>
+        <p><b>Media:</b> <span class="tag">Capcut</span> <span class="tag">Premiere Pro</span> <span class="tag">DaVinci Resolve</span></p>
+        <p><b>Basics:</b> <span class="tag">Excel (Advanced)</span> <span class="tag">Word</span> <span class="tag">PowerPoint</span></p>
+    </div>
+</div>
+
+<div id="taskbar">
+    <button class="start-btn" onclick="alert('Contact Info:\nEmail: markchristiansilos123@gmail.com\nPhone: +63 993 401 8546')">
+        <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" width="16"> Start
+    </button>
+</div>
+
+<script>
+    function openWin(id) { document.getElementById(id).style.display = "block"; }
+    function closeWin(id) { document.getElementById(id).style.display = "none"; }
+
+    // Re-use the Draggable Logic
+    const windows = document.querySelectorAll(".window");
+    windows.forEach(win => dragElement(win));
+
+    function dragElement(elmnt) {
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        elmnt.querySelector(".title-bar").onmousedown = dragMouseDown;
+
+        function dragMouseDown(e) {
+            e.preventDefault();
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            document.onmousemove = elementDrag;
+            // Bring to front logic
+            windows.forEach(w => w.style.zIndex = "1");
+            elmnt.style.zIndex = "100";
+        }
+
+        function elementDrag(e) {
+            e.preventDefault();
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+    }
+</script>
+
+</body>
+</html>
