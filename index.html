@@ -2,217 +2,215 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Silos_Portfolio_v1.0.exe</title>
+    <title>Silos_Engineering_OS_v7</title>
     <style>
         :root {
             --win-grey: #c0c0c0;
             --win-blue: #000080;
-            --win-teal: #008080;
-            --shadow: #808080;
+            --win-blue-light: #1084d0;
+            --shadow-dark: #404040;
+            --shadow-light: #ffffff;
         }
 
         body {
-            background-color: var(--win-teal);
+            background-color: #1a1a2e; 
+            background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
+                              url('https://i.postimg.cc/8PPZdYWG/Gemini-Generated-Image-t9gyxft9gyxft9gy.png'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             margin: 0;
-            font-family: 'Tahoma', 'Segoe UI', sans-serif;
+            font-family: 'Tahoma', 'Arial', sans-serif;
             overflow: hidden;
             height: 100vh;
         }
 
-        /* Desktop Icons */
-        #desktop {
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(1, 100px);
-            grid-gap: 25px;
-        }
+        /* Icons */
+        #desktop { padding: 20px; display: flex; flex-direction: column; gap: 25px; width: 100px; }
+        .icon { display: flex; flex-direction: column; align-items: center; color: white; font-size: 11px; cursor: pointer; text-align: center; text-shadow: 2px 2px 4px #000; }
+        .icon img { width: 38px; height: 38px; image-rendering: pixelated; margin-bottom: 5px; }
 
-        .icon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: white;
-            text-decoration: none;
-            font-size: 11px;
-            cursor: pointer;
-            text-align: center;
-            text-shadow: 1px 1px black;
-        }
-
-        .icon img { width: 40px; height: 40px; margin-bottom: 5px; image-rendering: pixelated; }
-
-        /* Window Styling */
+        /* Windows */
         .window {
             position: absolute;
-            background-color: var(--win-grey);
+            background: var(--win-grey);
             border: 2px solid;
-            border-color: #fff var(--shadow) var(--shadow) #fff;
+            border-color: var(--shadow-light) var(--shadow-dark) var(--shadow-dark) var(--shadow-light);
             padding: 2px;
-            box-shadow: 1px 1px 0px black;
-            min-width: 300px;
+            box-shadow: 8px 8px 25px rgba(0,0,0,0.8);
+            min-width: 320px;
+            display: none; 
+            z-index: 10;
         }
 
         .title-bar {
-            background: linear-gradient(90deg, var(--win-blue), #1084d0);
+            background: linear-gradient(90deg, var(--win-blue), var(--win-blue-light));
             color: white;
-            padding: 3px 5px;
+            padding: 3px 6px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 12px;
             font-weight: bold;
-            cursor: grab;
+            font-size: 12px;
+            cursor: move;
         }
 
-        .title-bar:active { cursor: grabbing; }
-
-        .close-btn {
-            background: var(--win-grey);
-            border: 1px solid;
-            border-color: #fff #000 #000 #fff;
-            width: 16px;
-            height: 14px;
-            font-size: 9px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .window-body {
-            padding: 15px;
-            background: white;
-            margin: 2px;
-            border: 2px inset;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        /* Engineering Specific Styles */
-        h2 { font-size: 16px; margin-top: 0; color: #000; }
-        .tag { background: #e0e0e0; padding: 2px 5px; border: 1px solid #888; font-size: 11px; margin-right: 5px; }
+        .window-body { padding: 15px; background: rgba(255, 255, 255, 0.95); border: 2px inset white; color: #000; }
 
         /* Taskbar */
         #taskbar {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 30px;
-            background: var(--win-grey);
-            border-top: 2px solid white;
-            display: flex;
-            align-items: center;
-            padding-left: 2px;
-            z-index: 1000;
+            position: fixed; bottom: 0; width: 100%; height: 32px;
+            background: var(--win-grey); border-top: 2px solid white;
+            display: flex; align-items: center; padding: 2px; z-index: 1000;
         }
 
         .start-btn {
-            font-weight: bold;
-            border: 2px solid;
-            border-color: #fff var(--shadow) var(--shadow) #fff;
-            padding: 2px 10px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            background: var(--win-grey);
-            cursor: pointer;
+            font-weight: bold; border: 2px solid; border-color: #fff var(--shadow-dark) var(--shadow-dark) #fff;
+            padding: 2px 10px; margin-right: 10px; display: flex; align-items: center; gap: 5px;
+            background: var(--win-grey); cursor: pointer;
         }
+
+        /* Active Tabs in Taskbar */
+        #taskbar-tabs { display: flex; gap: 4px; height: 100%; }
+        .task-tab {
+            border: 2px solid; border-color: #fff var(--shadow-dark) var(--shadow-dark) #fff;
+            background: var(--win-grey); font-size: 11px; padding: 0 10px;
+            display: flex; align-items: center; min-width: 100px; cursor: pointer;
+        }
+        .task-tab.active {
+            border-color: var(--shadow-dark) #fff #fff var(--shadow-dark);
+            background: #e0e0e0; font-weight: bold;
+        }
+
+        /* Excel Styling */
+        .excel-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 10px; }
+        .excel-table td, .excel-table th { border: 1px solid #ccc; padding: 5px; text-align: left; }
+        .excel-table th { background: #e0e0e0; }
+
+        .comparison-box img { width: 100%; border: 1px solid #444; }
     </style>
 </head>
 <body>
 
 <div id="desktop">
-    <div class="icon" onclick="openWin('aboutWin')">
+    <div class="icon" onclick="toggleWin('profileWin', 'About Me')">
         <img src="https://win98icons.alexmeub.com/icons/png/user_world-0.png">
         <span>About_Me.exe</span>
     </div>
-    <div class="icon" onclick="openWin('projWin')">
-        <img src="https://win98icons.alexmeub.com/icons/png/directory_closed-4.png">
-        <span>My_Models</span>
+    <div class="icon" onclick="toggleWin('awardsWin', 'Honors')">
+        <img src="https://win98icons.alexmeub.com/icons/png/certificate_2-0.png">
+        <span>Honors.sys</span>
     </div>
-    <div class="icon" onclick="openWin('skillWin')">
-        <img src="https://win98icons.alexmeub.com/icons/png/gears-0.png">
-        <span>Software_Stack</span>
+    <div class="icon" onclick="toggleWin('renderWin', '3D Project')">
+        <img src="https://win98icons.alexmeub.com/icons/png/paint_old-0.png">
+        <span>3D_Project.jpg</span>
     </div>
-</div>
-
-<div class="window" id="aboutWin" style="top: 50px; left: 150px;">
-    <div class="title-bar"><span>Bio.txt</span><button class="close-btn" onclick="closeWin('aboutWin')">X</button></div>
-    <div class="window-body">
-        <h2>Mark Christian Silos</h2>
-        <p><b>Position:</b> Civil Engineering Student / Intern</p>
-        <p><b>Education:</b> Philippine Christian University Dasmarinas</p>
-        <hr>
-        <p>Currently seeking apprenticeship opportunities to apply structural modeling and automated design skills in real-world projects.</p>
+    <div class="icon" onclick="toggleWin('excelWin', 'Excel Projects')">
+        <img src="https://win98icons.alexmeub.com/icons/png/ms_excel-0.png">
+        <span>Excel_Projects.xls</span>
     </div>
 </div>
 
-<div class="window" id="projWin" style="top: 100px; left: 200px; display:none;">
-    <div class="title-bar"><span>Project_Explorer</span><button class="close-btn" onclick="closeWin('projWin')">X</button></div>
+<div class="window" id="profileWin" style="top: 40px; left: 140px;">
+    <div class="title-bar"><span>Mark_Silos.info</span><button onclick="toggleWin('profileWin')">X</button></div>
     <div class="window-body">
-        <h3>Recent Engineering Works:</h3>
-        <ul>
-            <li><b>Structural Modeling:</b> 3D Designs in Sketchup & Tinkercad.</li>
-            <li><b>Automation:</b> Automated Stirrup/Steel Reinforcement Excel Design.</li>
-            <li><b>Project Mgmt:</b> Spreadsheet Monitoring & Calendar setup.</li>
-        </ul>
+        <h3>Mark Christian Silos</h3>
+        <p>Civil Engineering Student @ PCU Dasmariñas</p>
+        <p>📧 markchristiansilos123@gmail.com</p>
     </div>
 </div>
 
-<div class="window" id="skillWin" style="top: 150px; left: 250px; display:none;">
-    <div class="title-bar"><span>Software_Stack.dll</span><button class="close-btn" onclick="closeWin('skillWin')">X</button></div>
+<div class="window" id="awardsWin" style="top: 80px; left: 450px;">
+    <div class="title-bar"><span>Academic_Records.sys</span><button onclick="toggleWin('awardsWin')">X</button></div>
     <div class="window-body">
-        <p><b>Eng. Software:</b> <span class="tag">AutoCAD</span> <span class="tag">Sketchup</span> <span class="tag">STAAD</span> <span class="tag">EPANET</span></p>
-        <p><b>Media:</b> <span class="tag">Capcut</span> <span class="tag">Premiere Pro</span> <span class="tag">DaVinci Resolve</span></p>
-        <p><b>Basics:</b> <span class="tag">Excel (Advanced)</span> <span class="tag">Word</span> <span class="tag">PowerPoint</span></p>
+        <p><b>🎖️ Dean’s Lister (2023 - 2026)</b></p>
+        <p><b>🎓 High Honors (SHS) / Honors (HS)</b></p>
+    </div>
+</div>
+
+<div class="window" id="renderWin" style="top: 140px; left: 180px; width: 500px;">
+    <div class="title-bar"><span>3D_Model_Viewer.exe</span><button onclick="toggleWin('renderWin')">X</button></div>
+    <div class="window-body">
+        <div style="display:flex; gap:10px;">
+            <img src="https://i.postimg.cc/ZW1XN8br/sample1.png" style="width:48%">
+            <img src="https://i.postimg.cc/75pjz3HK/sample2.png" style="width:48%">
+        </div>
+    </div>
+</div>
+
+<div class="window" id="excelWin" style="top: 200px; left: 220px; width: 450px;">
+    <div class="title-bar"><span>Excel_Project_Manager.xls</span><button onclick="toggleWin('excelWin')">X</button></div>
+    <div class="window-body">
+        <h4 style="margin:0">Engineering Spreadsheet Solutions</h4>
+        <table class="excel-table">
+            <tr><th>Project Name</th><th>Function</th></tr>
+            <tr>
+                <td><b>Reinforcement Design</b></td>
+                <td>Automated calculation for stirrup spacing and steel reinforcement bar requirements based on structural loads.</td>
+            </tr>
+            <tr>
+                <td><b>Calendar Monitoring</b></td>
+                <td>Dynamic project timeline tracker with automated date highlighting for construction milestones.</td>
+            </tr>
+        </table>
     </div>
 </div>
 
 <div id="taskbar">
-    <button class="start-btn" onclick="alert('Contact Info:\nEmail: markchristiansilos123@gmail.com\nPhone: +63 993 401 8546')">
-        <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" width="16"> Start
-    </button>
+    <div class="start-btn">Start</div>
+    <div id="taskbar-tabs"></div>
 </div>
 
 <script>
-    function openWin(id) { document.getElementById(id).style.display = "block"; }
-    function closeWin(id) { document.getElementById(id).style.display = "none"; }
+    let openWindows = {};
 
-    // Re-use the Draggable Logic
-    const windows = document.querySelectorAll(".window");
-    windows.forEach(win => dragElement(win));
-
-    function dragElement(elmnt) {
-        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-        elmnt.querySelector(".title-bar").onmousedown = dragMouseDown;
-
-        function dragMouseDown(e) {
-            e.preventDefault();
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            document.onmouseup = closeDragElement;
-            document.onmousemove = elementDrag;
-            // Bring to front logic
-            windows.forEach(w => w.style.zIndex = "1");
-            elmnt.style.zIndex = "100";
+    function toggleWin(id, title) {
+        const win = document.getElementById(id);
+        if (win.style.display === "block") {
+            win.style.display = "none";
+            delete openWindows[id];
+        } else {
+            win.style.display = "block";
+            openWindows[id] = title;
+            zTop(win);
         }
+        renderTabs();
+    }
 
-        function elementDrag(e) {
-            e.preventDefault();
-            pos1 = pos3 - e.clientX;
-            pos2 = pos4 - e.clientY;
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-        }
-
-        function closeDragElement() {
-            document.onmouseup = null;
-            document.onmousemove = null;
+    function renderTabs() {
+        const container = document.getElementById('taskbar-tabs');
+        container.innerHTML = '';
+        for (let id in openWindows) {
+            const tab = document.createElement('div');
+            tab.className = 'task-tab' + (document.getElementById(id).style.zIndex == "100" ? ' active' : '');
+            tab.innerText = openWindows[id];
+            tab.onclick = () => { zTop(document.getElementById(id)); renderTabs(); };
+            container.appendChild(tab);
         }
     }
-</script>
 
+    function zTop(elmnt) {
+        document.querySelectorAll('.window').forEach(w => w.style.zIndex = "10");
+        elmnt.style.zIndex = "100";
+    }
+
+    // Drag Logic
+    document.querySelectorAll(".window").forEach(elmnt => {
+        var p1 = 0, p2 = 0, p3 = 0, p4 = 0;
+        elmnt.querySelector(".title-bar").onmousedown = function(e) {
+            e.preventDefault();
+            zTop(elmnt);
+            renderTabs();
+            p3 = e.clientX; p4 = e.clientY;
+            document.onmouseup = () => { document.onmouseup = null; document.onmousemove = null; };
+            document.onmousemove = (e) => {
+                p1 = p3 - e.clientX; p2 = p4 - e.clientY;
+                p3 = e.clientX; p4 = e.clientY;
+                elmnt.style.top = (elmnt.offsetTop - p2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - p1) + "px";
+            };
+        };
+    });
+</script>
 </body>
 </html>
