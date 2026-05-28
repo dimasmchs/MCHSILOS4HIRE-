@@ -568,13 +568,15 @@
   /* Loading animation */
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
   .blink { animation: blink 1s infinite; }
-
-  /* Wallpaper pattern */
-  #desktop { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23008080'/%3E%3Crect width='1' height='1' fill='%23007070' opacity='0.3'/%3E%3C/svg%3E"); }
-</style>
-</head>
-<body>
-
+  
+/* Wallpaper image */
+  #desktop { 
+    background-image: url("https://i.postimg.cc/vZKsgPzH/image.png") !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+  }
 <!-- Desktop -->
 <div id="desktop" ondblclick="desktopDblClick(event)">
 
