@@ -557,7 +557,7 @@
     border-right: 1px solid var(--win-dark);
     margin-right: 2px; white-space: nowrap;
   }
-  .xl-tab.active {
+ .xl-tab.active {
     background: white; font-weight: bold;
     border-top: 2px solid #2e75b6;
     position: relative; top: 1px;
@@ -569,7 +569,7 @@
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
   .blink { animation: blink 1s infinite; }
   
-/* Wallpaper image */
+  /* Wallpaper image */
   #desktop { 
     background-image: url("https://i.postimg.cc/vZKsgPzH/image.png") !important;
     background-size: cover;
@@ -577,9 +577,11 @@
     background-repeat: no-repeat;
     image-rendering: pixelated;
   }
-<!-- Desktop -->
-<div id="desktop" ondblclick="desktopDblClick(event)">
+</style>
+</head>
+<body>
 
+<div id="desktop" ondblclick="desktopDblClick(event)">
   <!-- Desktop Icons -->
   <div class="desktop-icon" style="top:20px;left:20px" ondblclick="openWin('about')" onclick="selectIcon(this)">
     <img src="https://win98icons.alexmeub.com/icons/png/user_world-0.png" alt="">
